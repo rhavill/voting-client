@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducer';
 import App from './components/App';
 import {VotingContainer} from './components/Voting';
-import Results from './components/Results';
+import {ResultsContainer} from './components/Results';
 
 const store = createStore(reducer);
 store.dispatch({
@@ -23,7 +23,7 @@ React.render((
         {() => <Router>
         <Route path="/" component={App}>
             <IndexRoute component={VotingContainer} />
-            <Route path="results" component={Results}/>
+            <Route path="results" component={ResultsContainer}/>
         </Route>
     </Router>}
     </Provider>
