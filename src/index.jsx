@@ -1,10 +1,11 @@
 import React from 'react';
-import App from './components/App';
-import Results from './components/Results';
-import Voting from './components/Voting';
 import { Router, Route, IndexRoute } from 'react-router';
 import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import reducer from './reducer';
+import App from './components/App';
+import {VotingContainer} from './components/Voting';
+import Results from './components/Results';
 
 const store = createStore(reducer);
 store.dispatch({
@@ -18,10 +19,12 @@ store.dispatch({
 });
 
 React.render((
-    <Router>
+    <Provider store={store}>
+        {() => <Router>
         <Route path="/" component={App}>
-            <IndexRoute component={Voting}  pair="{pair}"/>
+            <IndexRoute component={VotingContainer} />
             <Route path="results" component={Results}/>
         </Route>
-    </Router>
+    </Router>}
+    </Provider>
 ), document.getElementById('app'))
